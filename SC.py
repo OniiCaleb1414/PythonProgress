@@ -24,6 +24,7 @@
     # User inputs the sign then the amount of number until 'q'
 
 import time as tm
+import math as mt
 
 def goodbye():
     print("Goodbye and Come Again!")
@@ -121,9 +122,58 @@ def div():
 
     print("The Output is: " + str(res) + '\n')  
 
+def expo():
+    tm.sleep(1)
+    base = 0
+    power = 0
+    while True:
+        sBase = input("Enter the number you wish to raise : ")
+        sPower = input("Enter the power: ")
+        try:
+            base = int(sBase)
+            power = int(sPower)
+            break
+        except:
+            error_msg()    
+            tm.sleep(1)
+
+    num = mt.pow(base,power)
+
+    print("The output is: " + str(num)+ "\n")
+
+def root():
+    tm.sleep(1)
+    base = 0
+    power = 0
+    while True:
+        sBase = input("Enter the number you wish to root : ")
+        sPower = input("Enter the power: ")
+        try:
+            base = int(sBase)
+            power = int(sPower)
+            if power == 0:
+                print("The result is not possible try again \n")
+                tm.sleep(1)
+                continue
+            break
+        except:
+            error_msg()    
+            tm.sleep(1)
+
+    power = 1.00/power
+
+    num = mt.pow(base,power)
+
+    print("The output is: " + str(num) + "\n")            
+
+
+
+    
+
+
 while True:
     user_choice = input(
-        '''Main menu \n ----------------------- \nChoose one of the following options \n --------------------- \n +) Addition \n -) Subtraction \n /) Division \n *) Multiplication \n q = Quit \n---------------------------------- \n : ''')
+        '''Main menu \n ----------------------- \nChoose one of the following options \n --------------------- \n +) Addition \n -) Subtraction \n /) Division \n *) Multiplication \n ^) Exponential \n //) Root \n q = Quit \n---------------------------------- \n : ''')
     match user_choice:
         case 'q':
             goodbye()
@@ -136,6 +186,11 @@ while True:
             add()
         case '-':
             sub()
+        case '^':
+            expo()
+        case "//":
+            root()    
+
         case _: # This is the defualt so if its not one of the 5 options
             error_msg()            
 
